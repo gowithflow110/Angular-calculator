@@ -1,18 +1,38 @@
+
+<div id="parent" [ngClass]="isDarkMode ? 'dark-theme' : 'light-theme'">
 <h1>Angular Tutorial</h1>
 <h2>Calculator</h2>
 
-<div id="container">
-   
-    <textarea name="text" id="txt" placeholder="OUTPUT"></textarea>
+<button (click)="toggleTheme()" class="theme-toggle">
+  {{ isDarkMode ? '🌙 Dark Mode' : '☀️ Light Mode' }}
+</button>
 
-    <div class="btns">
-        <button (click)="add(num1.value, num2.value)" class="btn">+</button>
-        <button (click)="sub(num1.value, num2.value)" class="btn">-</button>
-        <button (click)="mul(num1.value, num2.value)" class="btn">*</button>
-        <button (click)="divd(num1.value, num2.value)" class="btn">/</button>
-    </div>
-    
-    <input type="number" placeholder="Enter first number" #num1>
-    <input type="number" placeholder="Enter second number" #num2>
+<div id="container">
+<div id="output">{{ output || '0' }}</div>
+
+  <div id="btns">
+    <button class="btn" (click)="setTextFromButton($event)" style="background-color: rgb(215, 16, 16);">&#x232B;</button> <!-- Cancel -->
+    <button class="btn" (click)="setTextFromButton($event)"  style="background-color: rgb(220, 148, 14);"><b>C</b></button>         <!-- Clear -->
+    <button class="btn" (click)="setTextFromButton($event)"><b>/</b></button>
+    <button class="btn" (click)="setTextFromButton($event)"><b>*</b></button>
+
+    <button class="btn" (click)="setTextFromButton($event)"  style="background-color: whitesmoke; color: black;">7</button>
+    <button class="btn" (click)="setTextFromButton($event)"  style="background-color: whitesmoke; color: black;">8</button>
+    <button class="btn" (click)="setTextFromButton($event)"  style="background-color: whitesmoke; color: black;">9</button>
+    <button class="btn" (click)="setTextFromButton($event)"><b>-</b></button>
+
+    <button class="btn" (click)="setTextFromButton($event)"  style="background-color: whitesmoke; color: black;">4</button>
+    <button class="btn" (click)="setTextFromButton($event)"  style="background-color: whitesmoke; color: black;">5</button>
+    <button class="btn" (click)="setTextFromButton($event)"  style="background-color: whitesmoke; color: black;">6</button>
+    <button class="btn" (click)="setTextFromButton($event)"><b>+</b></button>
+
+    <button class="btn" (click)="setTextFromButton($event)"  style="background-color: whitesmoke; color: black;">1</button>
+    <button class="btn" (click)="setTextFromButton($event)"  style="background-color: whitesmoke; color: black;">2</button>
+    <button class="btn" (click)="setTextFromButton($event)"  style="background-color: whitesmoke; color: black;">3</button>
+    <button class="btn equal" id="equal" (click)="calculate()"><b>=</b></button>
+
+    <button class="btn zero" (click)="setTextFromButton($event)"  style="background-color: whitesmoke; color: black;">0</button>
+  </div>
+</div>
 
 </div>

@@ -6,22 +6,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular14-starter';
+  output: string = '';
+  isDarkMode = false;
 
-add(x:number, y:number): void {
-   document.getElementById('txt').innerHTML = `${Number(x) + Number(y)}`;
+  toggleTheme(): void {
+    this.isDarkMode = !this.isDarkMode;
   }
 
-sub(x:number, y:number): void {
-   document.getElementById('txt').innerHTML = `${Number(x) - Number(y)}`;
+  setTextFromButton(event: Event): void {
+    const value = (event.target as HTMLButtonElement).innerText;
+
+    if (value === 'C') {
+      this.output = '';
+    } else if (value === '⌫' || value === '←') {
+      this.output = this.output.slice(0, -1);
+    } else {
+      this.output += value;
+    }
   }
 
-mul(x:number, y:number): void {
-   document.getElementById('txt').innerHTML = `${Number(x) * Number(y)}`;
+  calculate(): void {
+    try {
+      this.output = eval(this.output).toString();
+    } catch (e) {
+      this.output = 'Error';
+    }
   }
-
-divd(x:number, y:number): void {
-   document.getElementById('txt').innerHTML = `${Number(x) / Number(y)}`;
-  }
-
 }
